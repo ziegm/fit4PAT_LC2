@@ -11,13 +11,15 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpClientModule} from "@angular/common/http";
 import { RestProvider } from '../providers/rest/rest';
+import {PatientSelectorPage} from "../pages/patient-selector/patient-selector";
 
 @NgModule({
   declarations: [
     MyApp,
     PatientPage,
     AssessmentPage,
-    TabsPage
+    TabsPage,
+    PatientSelectorPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { RestProvider } from '../providers/rest/rest';
     MyApp,
     PatientPage,
     AssessmentPage,
-    TabsPage
+    TabsPage,
+    PatientSelectorPage
   ],
   providers: [
     StatusBar,

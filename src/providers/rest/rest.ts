@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import Bundle = fhir.Bundle;
+import Practitioner = fhir.Practitioner;
 
 /*
   Generated class for the RestProvider provider.
@@ -31,4 +33,16 @@ export class RestProvider {
       });
     });
   }
+
+  getPractitioner() {
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/Practitioner').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
+
 }

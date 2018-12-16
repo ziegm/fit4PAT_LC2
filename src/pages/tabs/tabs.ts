@@ -11,6 +11,8 @@ export class TabsPage {
   tab1Root = AssessmentPage;
   tab2Root = PatientPage;
 
+  hasHiddenTabs: boolean = false;
+
   constructor() {
 
   }
