@@ -6,23 +6,19 @@
   <h2>Timed Walking Test (10-Meter-Gehtest)</h2>
   <ion-item>
     <ion-label color="primary">1. Versuch:</ion-label>
-    <ion-input type="number" placeholder="Zeit in Sekunden"></ion-input>
+    <ion-input type="number" placeholder="Zeit in Sekunden" (keyup)="try(0, $event)"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label color="primary">2. Versuch:</ion-label>
-    <ion-input type="number" placeholder="Zeit in Sekunden"></ion-input>
+    <ion-input type="number" placeholder="Zeit in Sekunden" (keyup)="try(1, $event)"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label color="primary">3. Versuch:</ion-label>
-    <ion-input type="number" placeholder="Zeit in Sekunden"></ion-input>
+    <ion-input type="number" placeholder="Zeit in Sekunden" (keyup)="try(2, $event)"></ion-input>
   </ion-item>
-  <button ion-button>Auswerten</button>
+  <button ion-button (click)="processResponse()">Auswerten</button>
   <ion-item>
     <ion-label color="primary">Durchschnittswert in Sekunden:</ion-label>
-    <ion-label></ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label color="primary">Durchschnittswert in Meter/Sekunde:</ion-label>
-    <ion-label></ion-label>
+    <ion-label>{{average}}</ion-label>
   </ion-item>
 </ion-content>

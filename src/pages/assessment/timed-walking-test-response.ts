@@ -6,13 +6,16 @@ import Patient = fhir.Patient;
 import Practitioner = fhir.Practitioner;
 import {Fit4PATReference} from "../../app/fit4pat-reference";
 import Bundle = fhir.Bundle;
+import {TimedWalkingTestResponseItem} from "./timed-walking-test-response-item";
+import code = fhir.code;
 
 export class TimedWalkingTestResponse implements QuestionnaireResponse {
+  resourceType: code = "QuestionnaireResponse";
   author: fhir.Reference;
   id: fhir.id;
   identifier: fhir.Identifier;
   authored: dateTime = this.actualDate();
-  item: fhir.QuestionnaireResponseItem[] = [];
+  item: TimedWalkingTestResponseItem[] = [];
   language: fhir.code = "de-CH";
   source: fhir.Reference;
   status: fhir.code = "in-progress";

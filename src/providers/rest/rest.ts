@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Bundle = fhir.Bundle;
 import Practitioner = fhir.Practitioner;
+import {TimedWalkingTestResponse} from "../../pages/assessment/timed-walking-test-response";
 
 /*
   Generated class for the RestProvider provider.
@@ -44,5 +45,17 @@ export class RestProvider {
     });
   }
 
+  postTimedWalkingTestResponse(response: TimedWalkingTestResponse) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/QuestionnaireResponse', JSON.stringify(response),{
+        headers: new HttpHeaders().set('Content-Type', 'application/fhir+json;charset=UTF-8')
+      })
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
 
 }
