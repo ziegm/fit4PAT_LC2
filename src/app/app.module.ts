@@ -12,6 +12,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpClientModule} from "@angular/common/http";
 import { RestProvider } from '../providers/rest/rest';
 import {PatientSelectorPage} from "../pages/patient-selector/patient-selector";
+import {PatientAssessmentsPage} from "../pages/patient-assessments/patient-assessments";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {PatientSelectorPage} from "../pages/patient-selector/patient-selector";
     PatientPage,
     AssessmentPage,
     TabsPage,
-    PatientSelectorPage
+    PatientSelectorPage,
+    PatientAssessmentsPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import {PatientSelectorPage} from "../pages/patient-selector/patient-selector";
     PatientPage,
     AssessmentPage,
     TabsPage,
-    PatientSelectorPage
+    PatientSelectorPage,
+    PatientAssessmentsPage
   ],
   providers: [
     StatusBar,

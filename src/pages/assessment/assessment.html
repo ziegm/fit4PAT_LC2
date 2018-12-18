@@ -2,7 +2,7 @@
   <span *ngIf="patient === undefined; else selectedPatient">
     <button ion-button (click)="selectPatient()">Patient hinzufügen</button>
   </span>
-  <ng-template #selectedPatient><h2>{{patient.name[0].family}} {{patient.name[0].given[0]}}</h2></ng-template>
+  <ng-template #selectedPatient><h4>{{patient.name[0].family}} {{patient.name[0].given[0]}}</h4></ng-template>
   <h2>Timed Walking Test (10-Meter-Gehtest)</h2>
   <ion-item>
     <ion-label color="primary">1. Versuch:</ion-label>

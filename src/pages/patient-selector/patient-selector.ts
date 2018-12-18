@@ -12,7 +12,6 @@ import {AssessmentPage} from "../assessment/assessment";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-patient-selector',
   templateUrl: 'patient-selector.html',

@@ -45,6 +45,16 @@ export class RestProvider {
     });
   }
 
+  getQuestionnaireResponses() {
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/QuestionnaireResponse').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
   postTimedWalkingTestResponse(response: TimedWalkingTestResponse) {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/QuestionnaireResponse', JSON.stringify(response),{

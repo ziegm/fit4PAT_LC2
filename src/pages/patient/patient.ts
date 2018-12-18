@@ -3,6 +3,8 @@ import {NavController} from 'ionic-angular';
 import {RestProvider} from "../../providers/rest/rest";
 import Bundle = fhir.Bundle;
 import Patient = fhir.Patient;
+import {PatientSelectorPage} from "../patient-selector/patient-selector";
+import {PatientAssessmentsPage} from "../patient-assessments/patient-assessments";
 
 @Component({
   selector: 'page-patient',
@@ -24,5 +26,9 @@ export class PatientPage {
         });
         console.log(this.patients);
       });
+  }
+
+  showAssessements(patient: Patient) {
+    this.navCtrl.push(PatientAssessmentsPage, {patient: patient});
   }
 }
