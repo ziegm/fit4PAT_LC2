@@ -17,8 +17,7 @@ export class TimedWalkingTestResponse implements QuestionnaireResponse {
   status: fhir.code = "in-progress";
 
   addPatient(patient: Patient): void {
-    this.source = new Fit4PATReference(patient.identifier[0].value);
-    console.log(this);
+    this.source = new Fit4PATReference("Patient/" + patient.id);
   }
 
   private actualDate(): string {
