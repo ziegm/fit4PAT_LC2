@@ -23,7 +23,6 @@ export class TimedWalkingTestResponse implements QuestionnaireResponse {
 
   private actualDate(): string {
     let date = new Date();
-    return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
-      + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
   }
 }
