@@ -1,13 +1,9 @@
 import QuestionnaireResponse = fhir.QuestionnaireResponse;
-import {RestProvider} from "../../providers/rest/rest";
-import Identifier = fhir.Identifier;
 import dateTime = fhir.dateTime;
 import Patient = fhir.Patient;
-import Practitioner = fhir.Practitioner;
-import {Fit4PATReference} from "../../app/fit4pat-reference";
-import Bundle = fhir.Bundle;
-import {TimedWalkingTestResponseItem} from "./timed-walking-test-response-item";
 import code = fhir.code;
+import {Fit4PATReference} from "../../app/fit4pat-reference";
+import {TimedWalkingTestResponseItem} from "./timed-walking-test-response-item";
 
 export class TimedWalkingTestResponse implements QuestionnaireResponse {
   resourceType: code = "QuestionnaireResponse";
@@ -20,13 +16,6 @@ export class TimedWalkingTestResponse implements QuestionnaireResponse {
   source: fhir.Reference;
   status: fhir.code = "in-progress";
 
-  constructor(restProvider: RestProvider) {
-    restProvider.getPractitioner()
-      .then(data => {
-        this.author = new Fit4PATReference(this.firstPractitioner(data as Bundle).identifier[0].value);
-      });
-  }
-
   addPatient(patient: Patient): void {
     this.source = new Fit4PATReference(patient.identifier[0].value);
     console.log(this);
@@ -34,10 +23,7 @@ export class TimedWalkingTestResponse implements QuestionnaireResponse {
 
   private actualDate(): string {
     let date = new Date();
-    return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
-  }
-
-  private firstPractitioner(bundle: Bundle): Practitioner {
-    return bundle.entry[0].resource as Practitioner;
+    return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
+      + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
   }
 }

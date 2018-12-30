@@ -1,0 +1,42 @@
+{
+  "resourceType": "Practitioner",
+  "id": "physioId1",
+  "identifier": [
+    {
+      "use": "usual",
+      "value": "9876"
+    }
+  ],
+  "name": [
+    {
+      "family": "Scherzinger",
+      "given": [
+        "David"
+      ],
+      "use": "usual"
+    }
+  ],
+  "telecom": [],
+  "gender": "male",
+  "birthDate": "1985-07-12",
+  "qualification": [
+    {
+      "code": {
+        "coding": [],
+        "text": "Physiotherapeut BSc"
+      }
+    }
+  ],
+  "communication": [
+    {
+      "coding": [
+        {
+          "system": "urn:ietf:bcp:47",
+          "display": "German (Switzerland)",
+          "code": "de-CH"
+        }
+      ]
+    }
+  ],
+  "language": "de-CH"
+}

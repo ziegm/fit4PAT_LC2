@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {PatientSelectorPage} from "../patient-selector/patient-selector";
-import Patient = fhir.Patient;
-import QuestionnaireResponse = fhir.QuestionnaireResponse;
 import {TimedWalkingTestResponse} from "./timed-walking-test-response";
 import {RestProvider} from "../../providers/rest/rest";
 import {TimedWalkingTestResponseItem} from "./timed-walking-test-response-item";
+import {Fit4PATReference} from "../../app/fit4pat-reference";
+import Patient = fhir.Patient;
+import Bundle = fhir.Bundle;
+import Practitioner = fhir.Practitioner;
 
 @Component({
   selector: 'page-assessment',
@@ -19,10 +21,22 @@ export class AssessmentPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
     this.patient = navParams.get("patient");
-    this.timedWalkingTestResponse = new TimedWalkingTestResponse(restProvider);
+    this.timedWalkingTestResponse = new TimedWalkingTestResponse();
 
     if (this.patient !== undefined) {
       this.timedWalkingTestResponse.addPatient(this.patient);
+      if (this.timedWalkingTestResponse.author === undefined) {
+        restProvider.getPractitioners()
+          .then(data => {
+            this.timedWalkingTestResponse.author = new Fit4PATReference("Practitioner/" + this.firstPractitioner(data as Bundle).id);
+          });
+      }
+    }
+  }
+
+  private firstPractitioner(bundle: Bundle): Practitioner {
+    if (bundle.entry !== undefined) {
+      return bundle.entry[0].resource as Practitioner;
     }
   }
 

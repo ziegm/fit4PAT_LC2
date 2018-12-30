@@ -1,0 +1,61 @@
+{
+  "resourceType": "Patient",
+  "id": "patId2",
+  "identifier": [
+    {
+      "value": "12222",
+      "system": "Hospis",
+      "use": "usual"
+    }
+  ],
+  "name": [
+    {
+      "family": "Pedis",
+      "given": [
+        "Alexander"
+      ],
+      "use": "usual"
+    }
+  ],
+  "telecom": [
+    {
+      "value": "032 793 444 33",
+      "system": "phone",
+      "use": "home"
+    },
+    {
+      "value": "alexander.pedis@gmail.com",
+      "system": "email",
+      "use": "home"
+    }
+  ],
+  "gender": "male",
+  "birthDate": "2000-12-12",
+  "address": [
+    {
+      "use": "home",
+      "city": "Biel",
+      "type": "postal",
+      "line": [
+        "Teststrasse 33"
+      ],
+      "postalCode": "2502",
+      "country": "CHE"
+    }
+  ],
+  "communication": [
+    {
+      "language": {
+        "coding": [
+          {
+            "system": "urn:ietf:bcp:47",
+            "display": "German (Switzerland)",
+            "code": "de-CH"
+          }
+        ]
+      },
+      "preferred": true
+    }
+  ],
+  "language": "de-CH"
+}

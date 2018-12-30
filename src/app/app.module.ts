@@ -10,9 +10,12 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpClientModule} from "@angular/common/http";
-import { RestProvider } from '../providers/rest/rest';
+import {RestProvider} from '../providers/rest/rest';
 import {PatientSelectorPage} from "../pages/patient-selector/patient-selector";
 import {PatientAssessmentsPage} from "../pages/patient-assessments/patient-assessments";
+import practitioner from "../data/Practitioner.json";
+import patient from "../data/Patient_Pedis.json";
+import Bundle = fhir.Bundle;
 
 @NgModule({
   declarations: [
@@ -44,4 +47,27 @@ import {PatientAssessmentsPage} from "../pages/patient-assessments/patient-asses
     RestProvider
   ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(restProvider: RestProvider){
+    this.createPractitionerIfNotExisting(restProvider);
+    this.createPatientIfNotExisting(restProvider);
+  }
+
+  private createPractitionerIfNotExisting(restProvider: RestProvider) {
+    restProvider.getPractitioners()
+      .then(data => {
+        if ((data as Bundle).entry === undefined) {
+          restProvider.postPractitioner(practitioner);
+        }
+      });
+  }
+
+  private createPatientIfNotExisting(restProvider: RestProvider) {
+    restProvider.getPatients()
+      .then(data => {
+        if ((data as Bundle).entry === undefined) {
+          restProvider.postPatient(patient);
+        }
+      });
+  }
+}

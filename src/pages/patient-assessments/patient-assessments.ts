@@ -31,11 +31,13 @@ export class PatientAssessmentsPage {
   }
 
   getQuestionnaireResponses() {
-    this.restProvider.getQuestionnaireResponses()
+    this.restProvider.getQuestionnaireResponses(this.patient)
       .then(data => {
-        (data as Bundle).entry.forEach(entry =>{
-          this.questionnaireResponses.push(entry.resource as QuestionnaireResponse);
-        });
+        if ((data as Bundle).entry !== undefined) {
+          (data as Bundle).entry.forEach(entry =>{
+            this.questionnaireResponses.push(entry.resource as QuestionnaireResponse);
+          });
+        }
         console.log(this.questionnaireResponses);
       });
   }

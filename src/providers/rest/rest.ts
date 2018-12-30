@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import Bundle = fhir.Bundle;
 import Practitioner = fhir.Practitioner;
 import {TimedWalkingTestResponse} from "../../pages/assessment/timed-walking-test-response";
+import Patient = fhir.Patient;
 
 /*
   Generated class for the RestProvider provider.
@@ -35,7 +36,7 @@ export class RestProvider {
     });
   }
 
-  getPractitioner() {
+  getPractitioners() {
     return new Promise(resolve => {
       this.http.get(this.apiUrl+'/Practitioner').subscribe(data => {
         resolve(data);
@@ -45,9 +46,9 @@ export class RestProvider {
     });
   }
 
-  getQuestionnaireResponses() {
+  getQuestionnaireResponses(patient: Patient) {
     return new Promise(resolve => {
-      this.http.get(this.apiUrl+'/QuestionnaireResponse').subscribe(data => {
+      this.http.get(this.apiUrl+'/QuestionnaireResponse?source=' + patient.id).subscribe(data => {
         resolve(data);
       }, err => {
         console.log(err);
@@ -58,6 +59,32 @@ export class RestProvider {
   postTimedWalkingTestResponse(response: TimedWalkingTestResponse) {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'/QuestionnaireResponse', JSON.stringify(response),{
+        headers: new HttpHeaders().set('Content-Type', 'application/fhir+json;charset=UTF-8')
+      })
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  postPractitioner(response: Practitioner) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/Practitioner', JSON.stringify(response),{
+        headers: new HttpHeaders().set('Content-Type', 'application/fhir+json;charset=UTF-8')
+      })
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  postPatient(response: Patient) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'/Patient', JSON.stringify(response),{
         headers: new HttpHeaders().set('Content-Type', 'application/fhir+json;charset=UTF-8')
       })
         .subscribe(res => {

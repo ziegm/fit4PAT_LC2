@@ -20,5 +20,6 @@
     <ion-item *ngFor="let questionnaireResponse of questionnaireResponses">
         Timed Walking Test, {{questionnaireResponse.authored}}
     </ion-item>
+    <ion-item *ngIf="questionnaireResponses.length === 0">Es wurden bisher noch keine Assessments durchgeführt.</ion-item>
   </ion-list>
 </ion-content>

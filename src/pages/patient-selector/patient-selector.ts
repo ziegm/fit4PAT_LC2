@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 import {RestProvider} from "../../providers/rest/rest";
+import {AssessmentPage} from "../assessment/assessment";
 import Bundle = fhir.Bundle;
 import Patient = fhir.Patient;
-import {AssessmentPage} from "../assessment/assessment";
 
 /**
  * Generated class for the PatientSelectorPage page.
