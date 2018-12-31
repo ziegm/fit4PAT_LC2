@@ -48,6 +48,12 @@ import Bundle = fhir.Bundle;
   ]
 })
 export class AppModule {
+  /**
+   * Constructor with injected restProvider. The called methods inside are for creating
+   * a default practitioner and patient for demo purposes.
+   *
+   * @param restProvider
+   */
   constructor(restProvider: RestProvider){
     this.createPractitionerIfNotExisting(restProvider);
     this.createPatientIfNotExisting(restProvider);

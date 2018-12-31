@@ -1,16 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 import {RestProvider} from "../../providers/rest/rest";
 import Bundle = fhir.Bundle;
 import QuestionnaireResponse = fhir.QuestionnaireResponse;
 import Patient = fhir.Patient;
-
-/**
- * Generated class for the PatientAssessmentsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-patient-assessments',
@@ -21,15 +14,21 @@ export class PatientAssessmentsPage {
   questionnaireResponses: QuestionnaireResponse[] = [];
   patient: Patient;
 
+  /**
+   * Constructor retrieves a selected patient and loads his assessment responses.
+   *
+   * @param navCtrl
+   * @param navParams
+   * @param restProvider
+   */
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
     this.patient = navParams.get("patient");
     this.getQuestionnaireResponses();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PatientAssessmentsPage');
-  }
-
+  /**
+   * Load the assessment responses of a patient from the hapi-fhir server.
+   */
   getQuestionnaireResponses() {
     this.restProvider.getQuestionnaireResponses(this.patient)
       .then(data => {
@@ -38,8 +37,6 @@ export class PatientAssessmentsPage {
             this.questionnaireResponses.push(entry.resource as QuestionnaireResponse);
           });
         }
-        console.log(this.questionnaireResponses);
       });
   }
-
 }
