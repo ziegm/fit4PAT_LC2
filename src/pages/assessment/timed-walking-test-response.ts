@@ -33,6 +33,19 @@ export class TimedWalkingTestResponse implements QuestionnaireResponse {
    */
   private actualDate(): string {
     let date = new Date();
-    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    return date.getFullYear() + "-" + this.zeroPadded(date.getMonth() + 1)
+      + "-" + this.zeroPadded(date.getDate());
+  }
+
+  /**
+   * Pad part of the date (day, month) with a leading zero, if it has only one digit.
+   *
+   * @param datePart  The day or month that should be padded.
+   */
+  private zeroPadded(datePart: number): string {
+    if (datePart < 10) {
+      return "0" + datePart;
+    }
+    return String(datePart);
   }
 }
